@@ -12,7 +12,7 @@ The entire stack (PostgreSQL, FastAPI backend, React frontend) starts with a sin
 
 ```bash
 # Clone / enter the project directory
-cd realtime-app
+cd realtime-notes-app
 
 # Start everything
 docker compose up --build
