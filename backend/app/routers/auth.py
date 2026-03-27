@@ -37,6 +37,7 @@ async def login(data: UserLogin, db: AsyncSession = Depends(get_db)):
     return TokenResponse(
         access_token=create_access_token(str(user.id)),
         refresh_token=create_refresh_token(str(user.id)),
+        user=user,
     )
 
 
@@ -54,6 +55,7 @@ async def refresh(data: RefreshRequest, db: AsyncSession = Depends(get_db)):
     return TokenResponse(
         access_token=create_access_token(str(user.id)),
         refresh_token=create_refresh_token(str(user.id)),
+        user=user,
     )
 
 

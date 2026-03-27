@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { register, login as apiLogin, getMe } from '../api/auth'
+import { register, login as apiLogin } from '../api/auth'
 import { useAuth } from '../context/AuthContext'
 
 export default function RegisterPage() {
@@ -17,8 +17,7 @@ export default function RegisterPage() {
     try {
       await register(form.email, form.username, form.password)
       const tokens = await apiLogin(form.email, form.password)
-      const user = await getMe()
-      login(tokens, user)
+      login(tokens, tokens.user)
       navigate('/notes')
     } catch (err) {
       const detail = err.response?.data?.detail

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { login as apiLogin, getMe } from '../api/auth'
+import { login as apiLogin } from '../api/auth'
 import { useAuth } from '../context/AuthContext'
 
 export default function LoginPage() {
@@ -16,8 +16,7 @@ export default function LoginPage() {
     setLoading(true)
     try {
       const tokens = await apiLogin(form.email, form.password)
-      const user = await getMe()
-      login(tokens, user)
+      login(tokens, tokens.user)
       navigate('/notes')
     } catch (err) {
       setError(err.response?.data?.detail || 'Login failed')
