@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.database import engine, Base
 from app.models import user, note, collaborator, version
 from app.routers import auth, notes, collaborators, versions, websocket
+from app.config import settings
 
 
 @asynccontextmanager
@@ -17,7 +18,7 @@ app = FastAPI(title="Collaborative Notes API", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:5173"],
+    allow_origins=settings.ALLOWED_ORIGINS.split(","),
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

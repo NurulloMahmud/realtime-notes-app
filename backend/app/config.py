@@ -7,6 +7,7 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
     REFRESH_TOKEN_EXPIRE_DAYS: int = 7
     VERSION_HISTORY_LIMIT: int = 10
+    ALLOWED_ORIGINS: str = "http://localhost:3000,http://localhost:5173"
 
     class Config:
         env_file = ".env"
